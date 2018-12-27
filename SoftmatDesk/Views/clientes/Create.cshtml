@@ -1,0 +1,118 @@
+﻿@model SoftmatDesk.Models.DB_Context.cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Crear cliente</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        @using (Html.BeginForm("Create", "clientes", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Razon_social, "Razon social", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Razon_social, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", placeholder = "e.j Pepito perez LTDA.", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Razon_social, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Nit, "Nit", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Nit, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", placeholder = "e.j 12345678-9", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Nit, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Direccion, "Direccion", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", placeholder = "e.j Pepito perez LTDA.", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Contacto, "Nombre del contacto", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Contacto, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", placeholder = "Nombre representante legal o contacto directo de la compañia", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Contacto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Telefono, "Telefono fijo", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Celular, "Telefono movil", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Correo, "Email", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                @Html.LabelFor(model => model.Num_Usuarios, "N° de usuarios", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.EditorFor(model => model.Num_Usuarios, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Num_Usuarios, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <input type="submit" value="Agregar" class="btn btn-success" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /page content -->
+
+@section vendors {
+    <!-- iCheck -->
+    <script src="~/vendors/iCheck/icheck.min.js"></script>
+    <!-- validator -->
+    <script src="~/vendors/validator/validator.js"></script>
+}
+

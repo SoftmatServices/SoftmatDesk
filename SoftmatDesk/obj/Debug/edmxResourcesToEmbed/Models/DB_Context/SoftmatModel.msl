@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="softmatdeskModelStoreContainer" CdmEntityContainer="softmatdeskEntities">
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="softmatdeskModel.categorias">
+        <MappingFragment StoreEntitySet="categorias">
+          <ScalarProperty Name="idCategorias" ColumnName="idCategorias" />
+          <ScalarProperty Name="Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_idNivel_Soporte" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="softmatdeskModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Num_Usuarios" ColumnName="Num_Usuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nivel_prioridad">
+      <EntityTypeMapping TypeName="softmatdeskModel.nivel_prioridad">
+        <MappingFragment StoreEntitySet="nivel_prioridad">
+          <ScalarProperty Name="idNivel_prioridad" ColumnName="idNivel_prioridad" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+          <ScalarProperty Name="Tiempo_ejecucion" ColumnName="Tiempo_ejecucion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nivel_soporte">
+      <EntityTypeMapping TypeName="softmatdeskModel.nivel_soporte">
+        <MappingFragment StoreEntitySet="nivel_soporte">
+          <ScalarProperty Name="Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_idNivel_Soporte" />
+          <ScalarProperty Name="Nivel_Sop" ColumnName="Nivel_Sop" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="perfil">
+      <EntityTypeMapping TypeName="softmatdeskModel.perfil">
+        <MappingFragment StoreEntitySet="perfil">
+          <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sedes">
+      <EntityTypeMapping TypeName="softmatdeskModel.sedes">
+        <MappingFragment StoreEntitySet="sedes">
+          <ScalarProperty Name="idSedes" ColumnName="idSedes" />
+          <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+          <ScalarProperty Name="Nom_Sede" ColumnName="Nom_Sede" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="smusuarios">
+      <EntityTypeMapping TypeName="softmatdeskModel.smusuarios">
+        <MappingFragment StoreEntitySet="smusuarios">
+          <ScalarProperty Name="idsmUsuarios" ColumnName="idsmUsuarios" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" />
+          <ScalarProperty Name="ImgPerfil" ColumnName="ImgPerfil" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tickets">
+      <EntityTypeMapping TypeName="softmatdeskModel.tickets">
+        <MappingFragment StoreEntitySet="tickets">
+          <ScalarProperty Name="NoTickets" ColumnName="NoTickets" />
+          <ScalarProperty Name="Categorias_idCategorias" ColumnName="Categorias_idCategorias" />
+          <ScalarProperty Name="Usuario_idUsuario" ColumnName="Usuario_idUsuario" />
+          <ScalarProperty Name="Nivel_prioridad_idNivel_prioridad" ColumnName="Nivel_prioridad_idNivel_prioridad" />
+          <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+          <ScalarProperty Name="Sedes_idSedes" ColumnName="Sedes_idSedes" />
+          <ScalarProperty Name="Descripcion_falla" ColumnName="Descripcion_falla" />
+          <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+          <ScalarProperty Name="Cierre" ColumnName="Cierre" />
+          <ScalarProperty Name="SmUsuarios_idsmUsuarios" ColumnName="SmUsuarios_idsmUsuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_fallas">
+      <EntityTypeMapping TypeName="softmatdeskModel.tipo_fallas">
+        <MappingFragment StoreEntitySet="tipo_fallas">
+          <ScalarProperty Name="idFallas" ColumnName="idFallas" />
+          <ScalarProperty Name="Categorias_idCategorias" ColumnName="Categorias_idCategorias" />
+          <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="softmatdeskModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+          <ScalarProperty Name="idSede" ColumnName="idSede" />
+          <ScalarProperty Name="Perfil_idPerfil" ColumnName="Perfil_idPerfil" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Num_contacto" ColumnName="Num_contacto" />
+          <ScalarProperty Name="ImgPerfil" ColumnName="ImgPerfil" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

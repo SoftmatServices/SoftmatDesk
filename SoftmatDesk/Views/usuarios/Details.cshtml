@@ -1,0 +1,99 @@
+﻿@model SoftmatDesk.Models.DB_Context.usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgPerfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgPerfil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contraseña)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente.Razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente.Razon_social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.perfil.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.perfil.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sedes.Nom_Sede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sedes.Nom_Sede)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

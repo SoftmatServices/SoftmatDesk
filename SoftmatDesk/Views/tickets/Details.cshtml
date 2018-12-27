@@ -1,0 +1,91 @@
+﻿@model SoftmatDesk.Models.DB_Context.tickets
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tickets</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion_falla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion_falla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categorias.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorias.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente.Razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente.Razon_social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nivel_prioridad.Prioridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nivel_prioridad.Prioridad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sedes.Nom_Sede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sedes.Nom_Sede)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.smusuarios.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.smusuarios.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.Nombres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NoTickets }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

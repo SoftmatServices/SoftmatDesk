@@ -1,0 +1,97 @@
+﻿@model SoftmatDesk.Models.DB_Context.tickets
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tickets</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion_falla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion_falla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categorias.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorias.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente.Razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente.Razon_social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nivel_prioridad.Prioridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nivel_prioridad.Prioridad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sedes.Nom_Sede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sedes.Nom_Sede)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.smusuarios.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.smusuarios.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.Nombres)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

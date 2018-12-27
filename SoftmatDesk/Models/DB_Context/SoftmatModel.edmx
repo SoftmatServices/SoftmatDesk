@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="softmatdeskModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="idCategorias" />
+          </Key>
+          <Property Name="idCategorias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="int" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Razon_social" Type="varchar" MaxLength="100" />
+          <Property Name="Nit" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar" MaxLength="115" Nullable="false" />
+          <Property Name="Contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Celular" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Num_Usuarios" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nivel_prioridad">
+          <Key>
+            <PropertyRef Name="idNivel_prioridad" />
+          </Key>
+          <Property Name="idNivel_prioridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prioridad" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Tiempo_ejecucion" Type="time" Precision="0" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="nivel_soporte">
+          <Key>
+            <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
+          </Key>
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivel_Sop" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="perfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="sedes">
+          <Key>
+            <PropertyRef Name="idSedes" />
+          </Key>
+          <Property Name="idSedes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="int" />
+          <Property Name="Nom_Sede" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="smusuarios">
+          <Key>
+            <PropertyRef Name="idsmUsuarios" />
+          </Key>
+          <Property Name="idsmUsuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="TipoIdentificacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" Type="int" Nullable="false" />
+          <Property Name="ImgPerfil" Type="longblob" />
+          <Property Name="NickName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tickets">
+          <Key>
+            <PropertyRef Name="NoTickets" />
+          </Key>
+          <Property Name="NoTickets" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categorias_idCategorias" Type="int" Nullable="false" />
+          <Property Name="Usuario_idUsuario" Type="int" Nullable="false" />
+          <Property Name="Nivel_prioridad_idNivel_prioridad" Type="int" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="int" Nullable="false" />
+          <Property Name="Sedes_idSedes" Type="int" Nullable="false" />
+          <Property Name="Descripcion_falla" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Apertura" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Cierre" Type="datetime" Precision="0" />
+          <Property Name="SmUsuarios_idsmUsuarios" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_fallas">
+          <Key>
+            <PropertyRef Name="idFallas" />
+          </Key>
+          <Property Name="idFallas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categorias_idCategorias" Type="int" Nullable="false" />
+          <Property Name="Fuente" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="int" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+          <Property Name="Perfil_idPerfil" Type="int" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Num_contacto" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ImgPerfil" Type="longblob" />
+          <Property Name="NickName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="softmatdeskModelStoreContainer">
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="nivel_prioridad" EntityType="Self.nivel_prioridad" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="nivel_soporte" EntityType="Self.nivel_soporte" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="perfil" EntityType="Self.perfil" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="sedes" EntityType="Self.sedes" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="smusuarios" EntityType="Self.smusuarios" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="tickets" EntityType="Self.tickets" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="tipo_fallas" EntityType="Self.tipo_fallas" Schema="softmatdesk" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="softmatdesk" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="softmatdeskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="idCategorias" />
+          </Key>
+          <Property Name="idCategorias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="Int32" Nullable="false" />
+          <Property Name="Categoria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="nivel_soporte" Relationship="Self.fk_Categorias_Nivel_Soporte1" FromRole="categorias" ToRole="nivel_soporte" />
+          <NavigationProperty Name="tipo_fallas" Relationship="Self.fk_Fallas_Categorias1" FromRole="categorias" ToRole="tipo_fallas" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_Categorias1" FromRole="categorias" ToRole="tickets" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Razon_social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="115" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num_Usuarios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sedes" Relationship="Self.fk_Sedes_Cliente1" FromRole="cliente" ToRole="sedes" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_Cliente1" FromRole="cliente" ToRole="tickets" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_Usuario_Cliente" FromRole="cliente" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="nivel_prioridad">
+          <Key>
+            <PropertyRef Name="idNivel_prioridad" />
+          </Key>
+          <Property Name="idNivel_prioridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prioridad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tiempo_ejecucion" Type="Time" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_Nivel_prioridad1" FromRole="nivel_prioridad" ToRole="tickets" />
+        </EntityType>
+        <EntityType Name="nivel_soporte">
+          <Key>
+            <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
+          </Key>
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nivel_Sop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_Categorias_Nivel_Soporte1" FromRole="nivel_soporte" ToRole="categorias" />
+          <NavigationProperty Name="smusuarios" Relationship="Self.fk_SmUsuarios_Nivel_Soporte1" FromRole="nivel_soporte" ToRole="smusuarios" />
+        </EntityType>
+        <EntityType Name="perfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_Usuario_Perfil1" FromRole="perfil" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="sedes">
+          <Key>
+            <PropertyRef Name="idSedes" />
+          </Key>
+          <Property Name="idSedes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_idCliente" Type="Int32" />
+          <Property Name="Nom_Sede" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_Sedes_Cliente1" FromRole="sedes" ToRole="cliente" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_Sedes1" FromRole="sedes" ToRole="tickets" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_Usuario_Sedes1" FromRole="sedes" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="smusuarios">
+          <Key>
+            <PropertyRef Name="idsmUsuarios" />
+          </Key>
+          <Property Name="idsmUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoIdentificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" Type="Int32" Nullable="false" />
+          <Property Name="ImgPerfil" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="nivel_soporte" Relationship="Self.fk_SmUsuarios_Nivel_Soporte1" FromRole="smusuarios" ToRole="nivel_soporte" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_SmUsuarios1" FromRole="smusuarios" ToRole="tickets" />
+        </EntityType>
+        <EntityType Name="tickets">
+          <Key>
+            <PropertyRef Name="NoTickets" />
+          </Key>
+          <Property Name="NoTickets" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categorias_idCategorias" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Nivel_prioridad_idNivel_prioridad" Type="Int32" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="Int32" Nullable="false" />
+          <Property Name="Sedes_idSedes" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion_falla" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apertura" Type="DateTime" Nullable="false" />
+          <Property Name="Cierre" Type="DateTime" />
+          <Property Name="SmUsuarios_idsmUsuarios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_Tickets_Categorias1" FromRole="tickets" ToRole="categorias" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_Tickets_Cliente1" FromRole="tickets" ToRole="cliente" />
+          <NavigationProperty Name="nivel_prioridad" Relationship="Self.fk_Tickets_Nivel_prioridad1" FromRole="tickets" ToRole="nivel_prioridad" />
+          <NavigationProperty Name="sedes" Relationship="Self.fk_Tickets_Sedes1" FromRole="tickets" ToRole="sedes" />
+          <NavigationProperty Name="smusuarios" Relationship="Self.fk_Tickets_SmUsuarios1" FromRole="tickets" ToRole="smusuarios" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_Tickets_Usuario1" FromRole="tickets" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tipo_fallas">
+          <Key>
+            <PropertyRef Name="idFallas" />
+          </Key>
+          <Property Name="idFallas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categorias_idCategorias" Type="Int32" Nullable="false" />
+          <Property Name="Fuente" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_Fallas_Categorias1" FromRole="tipo_fallas" ToRole="categorias" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idSede" Type="Int32" Nullable="false" />
+          <Property Name="Perfil_idPerfil" Type="Int32" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num_contacto" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImgPerfil" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_Usuario_Cliente" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="perfil" Relationship="Self.fk_Usuario_Perfil1" FromRole="usuario" ToRole="perfil" />
+          <NavigationProperty Name="sedes" Relationship="Self.fk_Usuario_Sedes1" FromRole="usuario" ToRole="sedes" />
+          <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_Usuario1" FromRole="usuario" ToRole="tickets" />
+        </EntityType>
+        <Association Name="fk_Categorias_Nivel_Soporte1">
+          <End Role="nivel_soporte" Type="Self.nivel_soporte" Multiplicity="1" />
+          <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nivel_soporte">
+              <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
+            </Principal>
+            <Dependent Role="categorias">
+              <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fallas_Categorias1">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="tipo_fallas" Type="Self.tipo_fallas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idCategorias" />
+            </Principal>
+            <Dependent Role="tipo_fallas">
+              <PropertyRef Name="Categorias_idCategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_Categorias1">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idCategorias" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="Categorias_idCategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Sedes_Cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="sedes" Type="Self.sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="sedes">
+              <PropertyRef Name="Cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_Cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="Cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Cliente">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="Cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_Nivel_prioridad1">
+          <End Role="nivel_prioridad" Type="Self.nivel_prioridad" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nivel_prioridad">
+              <PropertyRef Name="idNivel_prioridad" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="Nivel_prioridad_idNivel_prioridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SmUsuarios_Nivel_Soporte1">
+          <End Role="nivel_soporte" Type="Self.nivel_soporte" Multiplicity="1" />
+          <End Role="smusuarios" Type="Self.smusuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nivel_soporte">
+              <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
+            </Principal>
+            <Dependent Role="smusuarios">
+              <PropertyRef Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Perfil1">
+          <End Role="perfil" Type="Self.perfil" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="perfil">
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="Perfil_idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_Sedes1">
+          <End Role="sedes" Type="Self.sedes" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sedes">
+              <PropertyRef Name="idSedes" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="Sedes_idSedes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Sedes1">
+          <End Role="sedes" Type="Self.sedes" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sedes">
+              <PropertyRef Name="idSedes" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_SmUsuarios1">
+          <End Role="smusuarios" Type="Self.smusuarios" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="smusuarios">
+              <PropertyRef Name="idsmUsuarios" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="SmUsuarios_idsmUsuarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tickets_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="tickets" Type="Self.tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="tickets">
+              <PropertyRef Name="Usuario_idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="softmatdeskEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="nivel_prioridad" EntityType="Self.nivel_prioridad" />
+          <EntitySet Name="nivel_soporte" EntityType="Self.nivel_soporte" />
+          <EntitySet Name="perfil" EntityType="Self.perfil" />
+          <EntitySet Name="sedes" EntityType="Self.sedes" />
+          <EntitySet Name="smusuarios" EntityType="Self.smusuarios" />
+          <EntitySet Name="tickets" EntityType="Self.tickets" />
+          <EntitySet Name="tipo_fallas" EntityType="Self.tipo_fallas" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="fk_Categorias_Nivel_Soporte1" Association="Self.fk_Categorias_Nivel_Soporte1">
+            <End Role="nivel_soporte" EntitySet="nivel_soporte" />
+            <End Role="categorias" EntitySet="categorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fallas_Categorias1" Association="Self.fk_Fallas_Categorias1">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="tipo_fallas" EntitySet="tipo_fallas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_Categorias1" Association="Self.fk_Tickets_Categorias1">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Sedes_Cliente1" Association="Self.fk_Sedes_Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="sedes" EntitySet="sedes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_Cliente1" Association="Self.fk_Tickets_Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Cliente" Association="Self.fk_Usuario_Cliente">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_Nivel_prioridad1" Association="Self.fk_Tickets_Nivel_prioridad1">
+            <End Role="nivel_prioridad" EntitySet="nivel_prioridad" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SmUsuarios_Nivel_Soporte1" Association="Self.fk_SmUsuarios_Nivel_Soporte1">
+            <End Role="nivel_soporte" EntitySet="nivel_soporte" />
+            <End Role="smusuarios" EntitySet="smusuarios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Perfil1" Association="Self.fk_Usuario_Perfil1">
+            <End Role="perfil" EntitySet="perfil" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_Sedes1" Association="Self.fk_Tickets_Sedes1">
+            <End Role="sedes" EntitySet="sedes" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Sedes1" Association="Self.fk_Usuario_Sedes1">
+            <End Role="sedes" EntitySet="sedes" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_SmUsuarios1" Association="Self.fk_Tickets_SmUsuarios1">
+            <End Role="smusuarios" EntitySet="smusuarios" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tickets_Usuario1" Association="Self.fk_Tickets_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="tickets" EntitySet="tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="softmatdeskModelStoreContainer" CdmEntityContainer="softmatdeskEntities">
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="softmatdeskModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="idCategorias" ColumnName="idCategorias" />
+                <ScalarProperty Name="Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_idNivel_Soporte" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="softmatdeskModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Num_Usuarios" ColumnName="Num_Usuarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nivel_prioridad">
+            <EntityTypeMapping TypeName="softmatdeskModel.nivel_prioridad">
+              <MappingFragment StoreEntitySet="nivel_prioridad">
+                <ScalarProperty Name="idNivel_prioridad" ColumnName="idNivel_prioridad" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="Tiempo_ejecucion" ColumnName="Tiempo_ejecucion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nivel_soporte">
+            <EntityTypeMapping TypeName="softmatdeskModel.nivel_soporte">
+              <MappingFragment StoreEntitySet="nivel_soporte">
+                <ScalarProperty Name="Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_idNivel_Soporte" />
+                <ScalarProperty Name="Nivel_Sop" ColumnName="Nivel_Sop" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="perfil">
+            <EntityTypeMapping TypeName="softmatdeskModel.perfil">
+              <MappingFragment StoreEntitySet="perfil">
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sedes">
+            <EntityTypeMapping TypeName="softmatdeskModel.sedes">
+              <MappingFragment StoreEntitySet="sedes">
+                <ScalarProperty Name="idSedes" ColumnName="idSedes" />
+                <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+                <ScalarProperty Name="Nom_Sede" ColumnName="Nom_Sede" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="smusuarios">
+            <EntityTypeMapping TypeName="softmatdeskModel.smusuarios">
+              <MappingFragment StoreEntitySet="smusuarios">
+                <ScalarProperty Name="idsmUsuarios" ColumnName="idsmUsuarios" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" ColumnName="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" />
+                <ScalarProperty Name="ImgPerfil" ColumnName="ImgPerfil" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tickets">
+            <EntityTypeMapping TypeName="softmatdeskModel.tickets">
+              <MappingFragment StoreEntitySet="tickets">
+                <ScalarProperty Name="NoTickets" ColumnName="NoTickets" />
+                <ScalarProperty Name="Categorias_idCategorias" ColumnName="Categorias_idCategorias" />
+                <ScalarProperty Name="Usuario_idUsuario" ColumnName="Usuario_idUsuario" />
+                <ScalarProperty Name="Nivel_prioridad_idNivel_prioridad" ColumnName="Nivel_prioridad_idNivel_prioridad" />
+                <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+                <ScalarProperty Name="Sedes_idSedes" ColumnName="Sedes_idSedes" />
+                <ScalarProperty Name="Descripcion_falla" ColumnName="Descripcion_falla" />
+                <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+                <ScalarProperty Name="Cierre" ColumnName="Cierre" />
+                <ScalarProperty Name="SmUsuarios_idsmUsuarios" ColumnName="SmUsuarios_idsmUsuarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_fallas">
+            <EntityTypeMapping TypeName="softmatdeskModel.tipo_fallas">
+              <MappingFragment StoreEntitySet="tipo_fallas">
+                <ScalarProperty Name="idFallas" ColumnName="idFallas" />
+                <ScalarProperty Name="Categorias_idCategorias" ColumnName="Categorias_idCategorias" />
+                <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="softmatdeskModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="Perfil_idPerfil" ColumnName="Perfil_idPerfil" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Num_contacto" ColumnName="Num_contacto" />
+                <ScalarProperty Name="ImgPerfil" ColumnName="ImgPerfil" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
