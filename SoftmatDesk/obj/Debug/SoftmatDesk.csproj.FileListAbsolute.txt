@@ -714,3 +714,4 @@ C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\De
 C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.csproj.CopyComplete
 C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.dll
 C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.pdb
+C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.csprojAssemblyReference.cache
