@@ -4,80 +4,111 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Detalles del Cliente  </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix">
 
-<h2>Details</h2>
 
-<div>
-    <h4>cliente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Razon_social)
-        </dt>
+                            <div class="x_content">
 
-        <dd>
-            @Html.DisplayFor(model => model.Razon_social)
-        </dd>
+                                <div class="col-xs-3">
+                                    <!-- required for floating -->
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs tabs-left">
+                                        <li class="active">
+                                            <a href="#Detalles" data-toggle="tab">Detalles cliente</a>
+                                        </li>
+                                        <li>
+                                            <a href="#contacto" data-toggle="tab">Datos de contacto</a>
+                                        </li>
+                                        <li>
+                                            <a href="#sedes" data-toggle="tab">Listado de sedes</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nit)
-        </dt>
+                                <div class="col-xs-9">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="Detalles">
+                                            <p class="lead">@Html.DisplayFor(model => model.Razon_social)</p>
+                                            <p>
+                                                Nit:       @Html.DisplayFor(model => model.Nit) <br />
+                                                Direccion: @Html.DisplayFor(model => model.Direccion) <br />
+                                                Telefono:  @Html.DisplayFor(model => model.Telefono) <br />
+                                                Numero de usuarios: @Html.DisplayFor(model => model.Num_Usuarios)
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="contacto">
+                                            <p class="lead">@Html.DisplayFor(model => model.Contacto)</p>
+                                            <p>
+                                                Celular: @Html.DisplayFor(model => model.Celular) <br />
+                                                Correo: @Html.DisplayFor(model => model.Correo)
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="sedes">
+                                            <p class="lead">Sedes</p>
+                                            <table id="datatable-buttons" class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Sede
+                                                        </th>
+                                                        <th>
+                                                            Pais
+                                                        </th>
+                                                        <th>
+                                                            Telefono
+                                                        </th>
+                                                        <th>
+                                                            Direccion
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.sedes)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Nom_Sede)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Pais)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Telefono)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Direccion)
+                                                            </td>
+                                                        </tr>
+                                                    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Nit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contacto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Celular)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Celular)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Num_Usuarios)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Num_Usuarios)
-        </dd>
-
-    </dl>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.idCliente }, new { @class = "btn btn-info" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idCliente }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /page content -->
