@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftmatDesk.Models.DB_Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace SoftmatDesk.Controllers
 {
     public class TicketsUsController : Controller
     {
+        private softmatdeskEntities db = new softmatdeskEntities();
+
         // GET: TicketsUs
         public ActionResult Index()
         {

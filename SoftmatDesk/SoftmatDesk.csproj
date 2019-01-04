@@ -3987,7 +3987,6 @@
     <Content Include="Views\nivel_soporte\Create.cshtml" />
     <Content Include="Views\nivel_soporte\Delete.cshtml" />
     <Content Include="Views\nivel_soporte\Details.cshtml" />
-    <Content Include="Views\nivel_soporte\Edit.cshtml" />
     <Content Include="Views\nivel_soporte\Index.cshtml" />
     <Content Include="Views\perfils\Create.cshtml" />
     <Content Include="Views\perfils\Delete.cshtml" />
@@ -4875,6 +4874,7 @@
     <Content Include="Views\smusuarios\Details.cshtml" />
     <Content Include="Views\smusuarios\Edit.cshtml" />
     <Content Include="Views\smusuarios\Index.cshtml" />
+    <Content Include="Views\nivel_soporte\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
