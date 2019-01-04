@@ -5,31 +5,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Detalles nivel de soporte  </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix">
 
-<div>
-    <h4>nivel_soporte</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nivel_Sop)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nivel_Sop)
-        </dd>
+                            <div class="x_content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+                                <div class="col-xs-3">
+                                    <!-- required for floating -->
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs tabs-left">
+                                        <li class="active">
+                                            <a href="#home" data-toggle="tab">Descripcion</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-    </dl>
+                                <div class="col-xs-9">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home">
+                                            <p class="lead">@Html.DisplayFor(model => model.Nivel_Sop)</p>
+                                            <p>
+                                                @Html.DisplayFor(model => model.Descripcion)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.Nivel_Soporte_idNivel_Soporte }, new { @class = "btn btn-info" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Nivel_Soporte_idNivel_Soporte }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /page content -->
