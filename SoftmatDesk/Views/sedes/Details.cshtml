@@ -5,63 +5,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>sedes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom_Sede)
-        </dt>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Detalles de Sede  </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nom_Sede)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Pais)
-        </dt>
+                            <div class="x_content">
 
-        <dd>
-            @Html.DisplayFor(model => model.Pais)
-        </dd>
+                                <div class="col-xs-3">
+                                    <!-- required for floating -->
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs tabs-left">
+                                        <li class="active">
+                                            <a href="#Detalles" data-toggle="tab">Detalles sede</a>
+                                        </li>
+                                        <li>
+                                            <a href="#contacto" data-toggle="tab">Datos de Cliente</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ciudad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ciudad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cliente.Razon_social)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cliente.Razon_social)
-        </dd>
-
-    </dl>
+                                <div class="col-xs-9">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="Detalles">
+                                            <p class="lead">@Html.DisplayFor(model => model.Nom_Sede)</p>
+                                            <p>
+                                                Pais:       @Html.DisplayFor(model => model.Pais) <br />
+                                                Ciudad: @Html.DisplayFor(model => model.Ciudad) <br />
+                                                Direccion:  @Html.DisplayFor(model => model.Direccion) <br />
+                                                Telefono: @Html.DisplayFor(model => model.Telefono)
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="contacto">
+                                            <p class="lead">@Html.DisplayFor(model => model.cliente.Razon_social)</p>
+                                            <p>
+                                                Contacto: @Html.DisplayFor(model => model.cliente.Contacto) <br />
+                                                Correo: @Html.DisplayFor(model => model.cliente.Correo)<br />
+                                                Telefono: @Html.DisplayFor(model => model.cliente.Celular)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.idSedes }, new { @class = "btn btn-info" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idSedes }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /page content -->
+
