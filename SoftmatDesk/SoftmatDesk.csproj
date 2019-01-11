@@ -4875,6 +4875,7 @@
     <Content Include="Views\smusuarios\Edit.cshtml" />
     <Content Include="Views\smusuarios\Index.cshtml" />
     <Content Include="Views\nivel_soporte\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplaySedes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

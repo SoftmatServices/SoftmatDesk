@@ -43,7 +43,19 @@ namespace SoftmatDesk.Controllers
             ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
             ViewBag.Perfil_idPerfil = new SelectList(db.perfil, "idPerfil", "Tipo");
             ViewBag.idSede = new SelectList(db.sedes, "idSedes", "Nom_Sede");
+            
             return View();
+        }
+
+        public ActionResult GetSedes(int id)
+        {
+            //var clienteSede = db.cliente.GroupJoin(db.sedes, cli => cli.idCliente,
+            //    sd => sd.Cliente_idCliente, (cli, sd) => new { cli, sd }).FirstOrDefault(x => x.cli.idCliente == idCliente);
+            List<sedes> sd = db.sedes.Where(x => x.Cliente_idCliente == idCliente).ToList();
+            ViewBag.sed = new SelectList(sd, "idSede","Nom_Sede");
+            return PartialView("DisplaySedes");
+            //var clienteSede = db.cliente.GroupJoin(db.sedes, cli => cli.idCliente,
+            //    sd => sd.Cliente_idCliente, (cli, sd) => new { cli, sd }).ToList();
         }
 
         // POST: usuarios/Create

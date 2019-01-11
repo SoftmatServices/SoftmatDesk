@@ -1,0 +1,12 @@
+﻿@model SoftmatDesk.Models.DB_Context.sedes
+
+
+<option value=" ">--Seleccionar Sede--</option>
+
+@if (ViewBag.sed != null)
+{
+    foreach (var item in ViewBag.sed)
+    {
+        <option value="@item.Value ">@item.Text</option>
+    }
+}
