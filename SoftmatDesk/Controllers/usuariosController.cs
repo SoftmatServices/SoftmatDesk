@@ -1,13 +1,11 @@
-﻿using System;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -43,17 +41,18 @@ namespace SoftmatDesk.Controllers
             ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
             ViewBag.Perfil_idPerfil = new SelectList(db.perfil, "idPerfil", "Tipo");
             ViewBag.idSede = new SelectList(db.sedes, "idSedes", "Nom_Sede");
-            
+            //List<cliente> ClienteList = db.cliente.ToList();
+            //ViewBag.ClienteList = new SelectList(ClienteList, "idCliente", "Razon_social");
             return View();
         }
 
-        public ActionResult GetSedes(int id)
+        public JsonResult GetSedes(int idCliente)
         {
             //var clienteSede = db.cliente.GroupJoin(db.sedes, cli => cli.idCliente,
             //    sd => sd.Cliente_idCliente, (cli, sd) => new { cli, sd }).FirstOrDefault(x => x.cli.idCliente == idCliente);
+            db.Configuration.ProxyCreationEnabled = false;
             List<sedes> sd = db.sedes.Where(x => x.Cliente_idCliente == idCliente).ToList();
-            ViewBag.sed = new SelectList(sd, "idSede","Nom_Sede");
-            return PartialView("DisplaySedes");
+            return Json(sd, JsonRequestBehavior.AllowGet);
             //var clienteSede = db.cliente.GroupJoin(db.sedes, cli => cli.idCliente,
             //    sd => sd.Cliente_idCliente, (cli, sd) => new { cli, sd }).ToList();
         }

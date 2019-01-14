@@ -27,7 +27,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     @if (ViewBag.Cliente_idCliente != null)
                                     {
-                                        @Html.DropDownListFor(model => model.Cliente_idCliente, ViewBag.Cliente_idCliente as SelectList, "--Seleccione Cliente--", htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.Cliente_idCliente, ViewBag.Cliente_idCliente as SelectList, "--Seleccione Cliente--", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Cliente_idCliente, "", new { @class = "text-danger" })
                                     }
 
@@ -37,7 +37,7 @@
                             <div class="item form-group">
                                 @Html.LabelFor(model => model.idSede, "Sede", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.DropDownListFor(model => model.idSede, new SelectList(""), "--Seleccione la sede--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.idSede, new SelectList(""), "--Seleccione la sede--", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.idSede, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -121,28 +121,25 @@
 
 <!-- /page content -->
 
-
+@section Scripts {
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Cliente_idCliente").change(function () {
+            $.get("/usuarios/GetSedes", { idCliente: $("#Cliente_idCliente").val() },
+                function (data) {
+                    $("#idSede").empty();
+                    $.each(data, function (index, row) {
+                        $("#idSede").append("<option value='" + row.idSedes + "'>" + row.Nom_Sede + "<option>")
+                    });
+                });
+        })
+    });
+</script>
+    }
 
 @section vendors {
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#Cliente_idCliente").change(function () {
-                var clienteId = $(this).val();
-                debugger
-                $.ajax({
-                    type: "post",
-                    url: "/usuarios/GetSedes?id=" + Cliente_idCliente,
-                    contentType: "html",
-                    success: function (response) {
-                        debugger
-                        $("#idSede").empty();
-                        $("#idSede").append(response);
-                    }
-                })
-            })
-        })
-    </script>
+
 
     <!-- iCheck -->
     <script src="~/vendors/iCheck/icheck.min.js"></script>
