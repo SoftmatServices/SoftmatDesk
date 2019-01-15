@@ -305,6 +305,7 @@
     <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\clientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\nivel_prioridadController.cs" />
     <Compile Include="Controllers\nivel_soporteController.cs" />
     <Compile Include="Controllers\perfilsController.cs" />
@@ -4876,9 +4877,11 @@
     <Content Include="Views\smusuarios\Edit.cshtml" />
     <Content Include="Views\smusuarios\Index.cshtml" />
     <Content Include="Views\nivel_soporte\Edit.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
     <Folder Include="Views\TicketsUs\" />
   </ItemGroup>
   <ItemGroup>
