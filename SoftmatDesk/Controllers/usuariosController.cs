@@ -1,4 +1,5 @@
-﻿using SoftmatDesk.Models.DB_Context;
+﻿using PasswordSecurity;
+using SoftmatDesk.Models.DB_Context;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -66,6 +67,7 @@ namespace SoftmatDesk.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Contraseña = PasswordStorage.CreateHash(usuario.Contraseña).ToString();
                 db.usuario.Add(usuario);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

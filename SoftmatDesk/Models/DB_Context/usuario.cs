@@ -11,7 +11,8 @@ namespace SoftmatDesk.Models.DB_Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,6 +31,8 @@ namespace SoftmatDesk.Models.DB_Context
         public string Num_contacto { get; set; }
         public byte[] ImgPerfil { get; set; }
         public string NickName { get; set; }
+        [Required]
+        [StringLength(100)]
         public string Contraseña { get; set; }
     
         public virtual cliente cliente { get; set; }

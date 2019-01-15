@@ -317,6 +317,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PasswordStorage.cs" />
     <Compile Include="Models\DB_Context\categorias.cs">
       <DependentUpon>SoftmatModel.tt</DependentUpon>
     </Compile>

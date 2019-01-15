@@ -25,7 +25,7 @@
         <AssociationConnector Association="softmatdeskModel.fk_SmUsuarios_Nivel_Soporte1" ManuallyRouted="false" />
         <AssociationConnector Association="softmatdeskModel.fk_Usuario_Perfil1" ManuallyRouted="false" />
         <AssociationConnector Association="softmatdeskModel.fk_Tickets_Sedes1" ManuallyRouted="false" />
-        <AssociationConnector Association="softmatdeskModel.fk_Usuario_Sedes1" ManuallyRouted="false" />
+        <AssociationConnector Association="softmatdeskModel.fk_Usuario_Sedes1" ManuallyRouted="false" ></AssociationConnector>
         <AssociationConnector Association="softmatdeskModel.fk_Tickets_SmUsuarios1" ManuallyRouted="false" />
         <AssociationConnector Association="softmatdeskModel.fk_Tickets_Usuario1" ManuallyRouted="false" />
       </Diagram>
