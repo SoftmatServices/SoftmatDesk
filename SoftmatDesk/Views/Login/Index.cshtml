@@ -1,0 +1,41 @@
+﻿@model SoftmatDesk.Models.DB_Context.usuario
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+
+<h2>login</h2>
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+
+    <h1>Login Form</h1>
+    <div>
+        @Html.TextBoxFor(model => model.NickName,null, new { @class = "form-control", placeholder = "Usuario" })
+    </div>
+    <div>
+        @Html.PasswordFor(model => model.Contraseña, new { @class = "form-control", placeholder="Contraseña" })
+    </div>
+    <div>
+        <input type="submit" value="Login" class="btn btn-default submit" />
+        <a class="reset_pass" href="#">Lost your password?</a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="separator">
+        <p class="change_link">
+            New to site?
+            <a href="#signup" class="to_register"> Create Account </a>
+        </p>
+        <div class="clearfix"></div>
+        <br />
+        <div>
+            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+        </div>
+    </div>
+}
+

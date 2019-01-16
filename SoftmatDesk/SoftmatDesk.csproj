@@ -4878,10 +4878,10 @@
     <Content Include="Views\smusuarios\Index.cshtml" />
     <Content Include="Views\nivel_soporte\Edit.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\TicketsUs\" />
   </ItemGroup>
   <ItemGroup>
