@@ -24,6 +24,7 @@ namespace SoftmatDesk.Models.DB_Context
         public int idUsuario { get; set; }
         public int Cliente_idCliente { get; set; }
         public int idSede { get; set; }
+        public string Login { get; set; }
         public int Perfil_idPerfil { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
@@ -40,5 +41,25 @@ namespace SoftmatDesk.Models.DB_Context
         public virtual sedes sedes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tickets> tickets { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [Display(Name = "Nombre de usuario")]
+        public string NickName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Contraseña { get; set; }
+
+        [Display(Name = "¿Recordar cuenta?")]
+        public bool RememberMe { get; set; }
+
+        public int idUsuario { get; set; }
+
+        public int Perfil_idPerfil { get; set; }
+
     }
 }

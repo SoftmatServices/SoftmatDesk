@@ -14,12 +14,17 @@ namespace SoftmatDesk.Controllers
     public class ticketsController : Controller
     {
         private softmatdeskEntities db = new softmatdeskEntities();
+        private LoginViewModel lwv = new LoginViewModel();
 
         // GET: tickets
         public async Task<ActionResult> Index()
         {
-            var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
-            return View(await tickets.ToListAsync());
+            if (lwv != null && lwv != null) {
+                var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
+                return View(await tickets.ToListAsync());
+            }
+
+            return RedirectToAction("Login", "Login");
         }
 
         // GET: tickets/Details/5
@@ -40,13 +45,18 @@ namespace SoftmatDesk.Controllers
         // GET: tickets/Create
         public ActionResult Create()
         {
-            ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
-            ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
-            ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
-            ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
-            ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
-            ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
-            return View();
+            if (lwv.Perfil_idPerfil == 1)
+            {
+                ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
+                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
+                ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
+                ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
+                ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
+                ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
+                return View();
+            }
+            return RedirectToAction("Index","Login");
+
         }
 
         // POST: tickets/Create

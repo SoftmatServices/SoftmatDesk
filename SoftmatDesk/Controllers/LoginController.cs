@@ -11,6 +11,7 @@ namespace SoftmatDesk.Controllers
     public class LoginController : Controller
     {
         private softmatdeskEntities db = new softmatdeskEntities();
+        public LoginViewModel lvm = new LoginViewModel();
 
         // GET: Login
         public ActionResult Index()
@@ -24,6 +25,7 @@ namespace SoftmatDesk.Controllers
             if (NickName != null && contraseña != null)
             {
                 var model = db.usuario.Where(x => x.NickName == NickName).SingleOrDefault();
+
                 if (model == null)
                 {
                     return Content("Usuario o contraseña no son correctos");
@@ -31,6 +33,11 @@ namespace SoftmatDesk.Controllers
                 bool result = PasswordStorage.VerifyPassword(contraseña, model.Contraseña);
                 if (result)
                 {
+                    lvm.NickName = model.NickName;
+                    lvm.Contraseña = model.Contraseña;
+                    lvm.RememberMe = true;
+                    lvm.idUsuario = model.idUsuario;
+                    lvm.Perfil_idPerfil = model.Perfil_idPerfil;
                     return RedirectToAction("Index", "tickets");
                 }
             }

@@ -4,123 +4,125 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="softmatdeskModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1">
+    <Schema Namespace="softmatdeskModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categorias">
           <Key>
             <PropertyRef Name="idCategorias" />
           </Key>
-          <Property Name="idCategorias" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nivel_Soporte_idNivel_Soporte" Nullable="false" Type="int" />
-          <Property Name="Categoria" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Descripcion" Nullable="false" MaxLength="500" Type="varchar" />
+          <Property Name="idCategorias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="int" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="idCliente" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Razon_social" MaxLength="100" Type="varchar" />
-          <Property Name="Nit" MaxLength="100" Type="varchar" />
-          <Property Name="Direccion" Nullable="false" MaxLength="115" Type="varchar" />
-          <Property Name="Contacto" Nullable="false" MaxLength="100" Type="varchar" />
-          <Property Name="Telefono" Nullable="false" MaxLength="15" Type="varchar" />
-          <Property Name="Celular" MaxLength="15" Type="varchar" />
-          <Property Name="Correo" Nullable="false" MaxLength="80" Type="varchar" />
-          <Property Name="Num_Usuarios" Nullable="false" Type="int" />
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Razon_social" Type="varchar" MaxLength="100" />
+          <Property Name="Nit" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar" MaxLength="115" Nullable="false" />
+          <Property Name="Contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Celular" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Num_Usuarios" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="nivel_prioridad">
           <Key>
             <PropertyRef Name="idNivel_prioridad" />
           </Key>
-          <Property Name="idNivel_prioridad" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Prioridad" Nullable="false" MaxLength="15" Type="varchar" />
-          <Property Name="Tiempo_ejecucion" Precision="0" Type="time" />
-          <Property Name="Descripcion" MaxLength="150" Type="varchar" />
+          <Property Name="idNivel_prioridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prioridad" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Tiempo_ejecucion" Type="time" Precision="0" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="nivel_soporte">
           <Key>
             <PropertyRef Name="Nivel_Soporte_idNivel_Soporte" />
           </Key>
-          <Property Name="Nivel_Soporte_idNivel_Soporte" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nivel_Sop" Nullable="false" MaxLength="100" Type="varchar" />
-          <Property Name="Descripcion" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Nivel_Soporte_idNivel_Soporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivel_Sop" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="perfil">
           <Key>
             <PropertyRef Name="idPerfil" />
           </Key>
-          <Property Name="idPerfil" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Tipo" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Descripcion" MaxLength="45" Type="varchar" />
+          <Property Name="idPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="sedes">
           <Key>
             <PropertyRef Name="idSedes" />
           </Key>
-          <Property Name="idSedes" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="idSedes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cliente_idCliente" Type="int" />
-          <Property Name="Nom_Sede" Nullable="false" MaxLength="100" Type="varchar" />
-          <Property Name="Pais" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Ciudad" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Direccion" Nullable="false" MaxLength="150" Type="varchar" />
-          <Property Name="Telefono" Nullable="false" MaxLength="12" Type="varchar" />
+          <Property Name="Nom_Sede" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="12" Nullable="false" />
         </EntityType>
         <EntityType Name="smusuarios">
           <Key>
             <PropertyRef Name="idsmUsuarios" />
           </Key>
-          <Property Name="idsmUsuarios" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombres" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Apellidos" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="TipoIdentificacion" Nullable="false" MaxLength="25" Type="varchar" />
-          <Property Name="Identificacion" Nullable="false" MaxLength="15" Type="varchar" />
-          <Property Name="Direccion" Nullable="false" MaxLength="150" Type="varchar" />
-          <Property Name="Telefono" Nullable="false" MaxLength="15" Type="varchar" />
-          <Property Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" Nullable="false" Type="int" />
+          <Property Name="idsmUsuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="45" />
+          <Property Name="Nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="TipoIdentificacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" Type="int" Nullable="false" />
           <Property Name="ImgPerfil" Type="longblob" />
-          <Property Name="NickName" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Contraseña" Nullable="false" MaxLength="45" Type="varchar" />
+          <Property Name="NickName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="tickets">
           <Key>
             <PropertyRef Name="NoTickets" />
           </Key>
-          <Property Name="NoTickets" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Categorias_idCategorias" Nullable="false" Type="int" />
-          <Property Name="Usuario_idUsuario" Nullable="false" Type="int" />
-          <Property Name="Nivel_prioridad_idNivel_prioridad" Nullable="false" Type="int" />
-          <Property Name="Cliente_idCliente" Nullable="false" Type="int" />
-          <Property Name="Sedes_idSedes" Nullable="false" Type="int" />
-          <Property Name="Descripcion_falla" Nullable="false" MaxLength="5000" Type="varchar" />
-          <Property Name="Apertura" Nullable="false" Precision="0" Type="datetime" />
-          <Property Name="Cierre" Precision="0" Type="datetime" />
-          <Property Name="SmUsuarios_idsmUsuarios" Nullable="false" Type="int" />
+          <Property Name="NoTickets" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categorias_idCategorias" Type="int" Nullable="false" />
+          <Property Name="Usuario_idUsuario" Type="int" Nullable="false" />
+          <Property Name="Nivel_prioridad_idNivel_prioridad" Type="int" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="int" Nullable="false" />
+          <Property Name="Sedes_idSedes" Type="int" Nullable="false" />
+          <Property Name="Descripcion_falla" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Apertura" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Cierre" Type="datetime" Precision="0" />
+          <Property Name="SmUsuarios_idsmUsuarios" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tipo_fallas">
           <Key>
             <PropertyRef Name="idFallas" />
           </Key>
-          <Property Name="idFallas" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Categorias_idCategorias" Nullable="false" Type="int" />
-          <Property Name="Fuente" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Descripcion" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Link" Nullable="false" MaxLength="500" Type="varchar" />
+          <Property Name="idFallas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categorias_idCategorias" Type="int" Nullable="false" />
+          <Property Name="Fuente" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
-          <Property Name="idUsuario" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Cliente_idCliente" Nullable="false" Type="int" />
-          <Property Name="idSede" Nullable="false" Type="int" />
-          <Property Name="Perfil_idPerfil" Nullable="false" Type="int" />
-          <Property Name="Nombres" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Apellidos" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Correo" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Num_contacto" Nullable="false" MaxLength="12" Type="varchar" />
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_idCliente" Type="int" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+          <Property Name="Perfil_idPerfil" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="45" />
+          <Property Name="Nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Num_contacto" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="ImgPerfil" Type="longblob" />
-          <Property Name="NickName" Nullable="false" MaxLength="45" Type="varchar" />
-          <Property Name="Contraseña" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="NickName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityContainer Name="softmatdeskModelStoreContainer">
           <EntitySet Name="categorias" EntityType="Self.categorias" Schema="softmatdesk" store:Type="Tables" />
@@ -216,6 +218,7 @@
             <PropertyRef Name="idsmUsuarios" />
           </Key>
           <Property Name="idsmUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoIdentificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -269,6 +272,7 @@
           <Property Name="Cliente_idCliente" Type="Int32" Nullable="false" />
           <Property Name="idSede" Type="Int32" Nullable="false" />
           <Property Name="Perfil_idPerfil" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
@@ -576,6 +580,7 @@
           <EntitySetMapping Name="smusuarios">
             <EntityTypeMapping TypeName="softmatdeskModel.smusuarios">
               <MappingFragment StoreEntitySet="smusuarios">
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="idsmUsuarios" ColumnName="idsmUsuarios" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
@@ -620,6 +625,7 @@
           <EntitySetMapping Name="usuario">
             <EntityTypeMapping TypeName="softmatdeskModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
                 <ScalarProperty Name="idSede" ColumnName="idSede" />
