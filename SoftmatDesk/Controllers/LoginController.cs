@@ -1,22 +1,30 @@
 ﻿using PasswordSecurity;
+using SoftmatDesk.Models;
 using SoftmatDesk.Models.DB_Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace SoftmatDesk.Controllers
 {
     public class LoginController : Controller
     {
         private softmatdeskEntities db = new softmatdeskEntities();
-        public LoginViewModel lvm = new LoginViewModel();
 
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            if (Session["Sesion"] != null)
+            {
+                return RedirectToAction("Index","tickets", new { NombreUs = Session["Sesion"].ToString()});
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -33,15 +41,21 @@ namespace SoftmatDesk.Controllers
                 bool result = PasswordStorage.VerifyPassword(contraseña, model.Contraseña);
                 if (result)
                 {
-                    lvm.NickName = model.NickName;
-                    lvm.Contraseña = model.Contraseña;
-                    lvm.RememberMe = true;
-                    lvm.idUsuario = model.idUsuario;
-                    lvm.Perfil_idPerfil = model.Perfil_idPerfil;
+                    Session["Sesion"] = model.Nombres + " " + model.Apellidos;
                     return RedirectToAction("Index", "tickets");
                 }
             }
             return View();
+
+
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction ("Index","Login");
+
+
         }
     }
 }

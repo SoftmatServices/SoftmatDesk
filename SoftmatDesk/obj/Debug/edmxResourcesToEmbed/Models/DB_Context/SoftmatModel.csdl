@@ -78,6 +78,7 @@
       <PropertyRef Name="idsmUsuarios" />
     </Key>
     <Property Name="idsmUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
     <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TipoIdentificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -131,6 +132,7 @@
     <Property Name="Cliente_idCliente" Type="Int32" Nullable="false" />
     <Property Name="idSede" Type="Int32" Nullable="false" />
     <Property Name="Perfil_idPerfil" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
     <Property Name="Nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />

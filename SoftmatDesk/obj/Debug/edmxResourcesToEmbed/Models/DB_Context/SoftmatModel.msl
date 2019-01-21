@@ -70,6 +70,7 @@
     <EntitySetMapping Name="smusuarios">
       <EntityTypeMapping TypeName="softmatdeskModel.smusuarios">
         <MappingFragment StoreEntitySet="smusuarios">
+          <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="idsmUsuarios" ColumnName="idsmUsuarios" />
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
           <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
@@ -114,6 +115,7 @@
     <EntitySetMapping Name="usuario">
       <EntityTypeMapping TypeName="softmatdeskModel.usuario">
         <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="Cliente_idCliente" ColumnName="Cliente_idCliente" />
           <ScalarProperty Name="idSede" ColumnName="idSede" />

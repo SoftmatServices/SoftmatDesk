@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -168,7 +169,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -187,7 +188,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+                                    <img src="images/img.jpg" alt="">........
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -198,7 +199,7 @@
                                         </a>
                                     </li>
                                     <li><a href="javascript:;">Help</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                    <li>@Html.ActionLink("Log", "Logout", "Login")</li>
                                 </ul>
                             </li>
                         </ul>
@@ -227,7 +228,7 @@
     <script src="~/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="~/vendors/nprogress/nprogress.js"></script>
-    
+
 
 
     <!-- Custom Theme Scripts -->

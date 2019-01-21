@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
+
     public class ticketsController : Controller
     {
         private softmatdeskEntities db = new softmatdeskEntities();
-        private LoginViewModel lwv = new LoginViewModel();
+
 
         // GET: tickets
         public async Task<ActionResult> Index()
         {
-            if (lwv != null && lwv != null) {
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
                 var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
+                ViewBag.Nombre = Session["Sesion"];
                 return View(await tickets.ToListAsync());
             }
+            
 
-            return RedirectToAction("Login", "Login");
         }
 
         // GET: tickets/Details/5
@@ -45,17 +47,14 @@ namespace SoftmatDesk.Controllers
         // GET: tickets/Create
         public ActionResult Create()
         {
-            if (lwv.Perfil_idPerfil == 1)
-            {
-                ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
-                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
-                ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
-                ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
-                ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
-                ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
-                return View();
-            }
-            return RedirectToAction("Index","Login");
+
+            ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
+            ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
+            ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
+            ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
+            ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
+            ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
+            return View();
 
         }
 
@@ -82,7 +81,7 @@ namespace SoftmatDesk.Controllers
             return View(tickets);
         }
 
-        // GET: tickets/Edit/5
+        // GET: tickets/Edit
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)

@@ -319,6 +319,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PasswordStorage.cs" />
+    <Compile Include="Models\Controlacces.cs" />
     <Compile Include="Models\DB_Context\categorias.cs">
       <DependentUpon>SoftmatModel.tt</DependentUpon>
     </Compile>
@@ -370,11 +371,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceBD.resx</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\IdentityPersonalizado.cs" />
-    <Compile Include="Seguridad\PrincipalPersonalizado.cs" />
-    <Compile Include="Seguridad\ProveedorAutenticacion.cs" />
-    <Compile Include="Seguridad\UsuarioMembership.cs" />
-    <Compile Include="Utilidades\SeguridadUtilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\css\custom.css" />

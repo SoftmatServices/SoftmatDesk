@@ -43,23 +43,4 @@ namespace SoftmatDesk.Models.DB_Context
         public virtual ICollection<tickets> tickets { get; set; }
     }
 
-    public class LoginViewModel
-    {
-        [Required]
-        [Display(Name = "Nombre de usuario")]
-        public string NickName { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
-        public string Contraseña { get; set; }
-
-        [Display(Name = "¿Recordar cuenta?")]
-        public bool RememberMe { get; set; }
-
-        public int idUsuario { get; set; }
-
-        public int Perfil_idPerfil { get; set; }
-
-    }
 }
