@@ -1,5 +1,8 @@
 ﻿using SoftmatDesk.Models.DB_Context;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -13,20 +16,32 @@ namespace SoftmatDesk.Controllers
 
 
         // GET: tickets
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
+            
             if (Session["Sesion"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            else
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
                 var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
                 ViewBag.Nombre = Session["Sesion"];
-                return View(await tickets.ToListAsync());
+                ViewBag.Id = Session["id"];
+                return View(tickets);
             }
-            
+            else if (Session["Rol"].ToString() == "Soporte")
+            {
+                //var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
+                string id = Session["id"].ToString();
+                int i = Int32.Parse(id);
+                List<tickets> tickets = db.tickets.Where(t => t.Usuario_idUsuario == i).ToList();
+                ViewBag.Nombre = Session["Sesion"];
+                ViewBag.Id = Session["id"];
+                return View( tickets);
+            }
 
+            return Content("No tiene acceso");
         }
 
         // GET: tickets/Details/5
