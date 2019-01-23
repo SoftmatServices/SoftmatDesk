@@ -54,6 +54,7 @@ namespace SoftmatDesk.Controllers
                     Session["Sesion"] = model.Nombres + " " + model.Apellidos;
                     Session["id"] = model.idUsuario;
                     Session["Rol"] = perf.Tipo;
+
                     return RedirectToAction("Index", "tickets");
                 }
             }
