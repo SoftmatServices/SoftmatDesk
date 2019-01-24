@@ -321,6 +321,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PasswordStorage.cs" />
+    <Compile Include="Models\Acces.cs" />
     <Compile Include="Models\DB_Context\categorias.cs">
       <DependentUpon>SoftmatModel.tt</DependentUpon>
     </Compile>
@@ -4884,6 +4885,9 @@
     <Content Include="Views\Shared\_LayoutUs.cshtml" />
     <Content Include="Views\Shared\_LayoutCl.cshtml" />
     <Content Include="Views\Shared\_LayoutSop.cshtml" />
+    <Content Include="Views\tickets\ListSop.cshtml" />
+    <Content Include="Views\tickets\ListCl.cshtml" />
+    <Content Include="Views\tickets\ListUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

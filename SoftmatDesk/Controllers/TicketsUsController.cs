@@ -14,26 +14,12 @@ namespace SoftmatDesk.Controllers
     {
         private softmatdeskEntities db = new softmatdeskEntities();
 
-        string = id;
-        id = Session["id"].toString;
+      
 
         public ActionResult Index()
         {
 
-            if (Session["Sesion"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
-            {
-                //var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
-                string id = Session["id"].ToString();
-                int i = Int32.Parse(id);
-                List<tickets> tickets = db.tickets.Where(t => t.Usuario_idUsuario == i).ToList();
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View(tickets);
-            }
+            
 
             return Content("No tiene acceso");
         }
@@ -56,7 +42,6 @@ namespace SoftmatDesk.Controllers
         // GET: tickets/Create
         public ActionResult Create()
         {
-            ViewBag.categorias = List<categorias> cat= db.categorias.Where(c => c.idCategorias = )
             ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
             ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
             ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");

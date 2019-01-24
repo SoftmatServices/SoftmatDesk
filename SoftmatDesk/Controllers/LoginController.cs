@@ -1,6 +1,5 @@
-﻿using PasswordSecurity;
+﻿using SoftmatDesk.Models;
 using SoftmatDesk.Models.DB_Context;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace SoftmatDesk.Controllers
@@ -8,11 +7,12 @@ namespace SoftmatDesk.Controllers
     public class LoginController : Controller
     {
         private softmatdeskEntities db = new softmatdeskEntities();
+        private Acces ac = new Acces();
 
         // GET: Login
         public ActionResult Index()
         {
-            
+
             if (Session["Sesion"] != null)
             {
                 if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
@@ -21,7 +21,7 @@ namespace SoftmatDesk.Controllers
                 }
                 else if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
                 {
-                    return RedirectToAction("Create","ticketsSop", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                    return RedirectToAction("Create", "ticketsSop", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
                 }
                 else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
                 {
@@ -29,11 +29,7 @@ namespace SoftmatDesk.Controllers
                 }
                 else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
                 {
-                    return RedirectToAction("Index","TicketsUs", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
-                }
-                else
-                {
-                    return View();
+                    return RedirectToAction("Index", "TicketsUs", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
                 }
             }
 
@@ -43,52 +39,52 @@ namespace SoftmatDesk.Controllers
         [HttpPost]
         public ActionResult Login(string NickName, string contraseña)
         {
+            ac.ValidacionAccesoU(NickName, contraseña);
             if (NickName != null && contraseña != null)
             {
-                var model = db.usuario.Where(x => x.NickName == NickName).SingleOrDefault();
-                var modelS = db.smusuarios.Where(x => x.NickName == NickName).SingleOrDefault();
 
-                if (model == null && modelS == null)
+                if (ac.Sesion == null)
                 {
                     return Content("Usuario o contraseña no son correctos");
                 }
-                else if (model != null)
+                else if (ac.Sesion != null)
                 {
-                    bool result = PasswordStorage.VerifyPassword(contraseña, model.Contraseña);
-                    if (result)
+                    Session["Sesion"] = ac.Sesion;
+                    Session["id"] = ac.idUs;
+                    Session["Rol"] = ac.Rol;
+                    if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
                     {
-                        var per = db.perfil.Where(p => p.idPerfil == model.Perfil_idPerfil).FirstOrDefault();
-                        Session["Sesion"] = model.Nombres + " " + model.Apellidos;
-                        Session["id"] = model.idUsuario;
-                        Session["Rol"] = per.Tipo;
-                        if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
-                        {   
-                            var client = db.cliente.Where(c => c.idCliente == model.Cliente_idCliente).FirstOrDefault();
-                            Session["idC"] = model.Cliente_idCliente;
-                            Session["N_US"] = client.Num_Usuarios;
-                            return RedirectToAction("Index", "TicketsCl");
-                        }
-                        else if(Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
-                        {
-                            return RedirectToAction("Index", "TicketsUs");
-                        }
+                        Session["idC"] = ac.idC;
+                        return RedirectToAction("ListCl", "tickets");
                     }
-                }
-                else if (modelS != null && modelS.Nivel_Soporte_Nivel_Soporte_idNivel_Soporte == 1)
-                {
-                    bool result = PasswordStorage.VerifyPassword(contraseña, modelS.Contraseña);
-                    if (result)
+                    else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
                     {
-                        var sopAdmin = db.nivel_soporte.Where(sa => sa.Nivel_Soporte_idNivel_Soporte == modelS.Nivel_Soporte_Nivel_Soporte_idNivel_Soporte).FirstOrDefault();
-                        Session["Sesion"] = modelS.Nombres + " " + modelS.Apellidos;
-                        Session["id"] = modelS.idsmUsuarios;
-                        Session["Rol"] = "Sop";
-                        Session["LvlSop"] = sopAdmin.Nivel_Soporte_idNivel_Soporte;
+                        return RedirectToAction("ListUs", "tickets");
+                    }
 
-                        return RedirectToAction("Index", "TicketsSop");
-                    }
+                }
+                else if (ac.Rol == "Administrador" || ac.Rol == "Admin")
+                {
+                    Session["Sesion"] = ac.Sesion;
+                    Session["id"] = ac.idUs;
+                    Session["Rol"] = ac.Rol;
+                    Session["IdRol"] = ac.IdRol;
+
+                    return RedirectToAction("Index", "tickets");
+
+
+                }
+                else if (ac.Rol == "Sop" || ac.Rol == "Soporte")
+                {
+                    Session["Sesion"] = ac.Sesion;
+                    Session["id"] = ac.idUs;
+                    Session["Rol"] = ac.Rol;
+                    Session["IdRol"] = ac.IdRol;
+
+                    return RedirectToAction("ListSop", "tickets");
                 }
             }
+
             return View();
 
 

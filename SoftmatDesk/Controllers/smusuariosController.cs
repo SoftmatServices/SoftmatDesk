@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SoftmatDesk.Models.DB_Context;
+using PasswordSecurity;
 
 namespace SoftmatDesk.Controllers
 {
@@ -54,10 +55,10 @@ namespace SoftmatDesk.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Database.SqlQuery<smusuarios>("call CrearUS");
+
+                smusuarios.Contraseña = PasswordStorage.CreateHash(smusuarios.Contraseña).ToString();
+                db.smusuarios.Add(smusuarios);
                 await db.SaveChangesAsync();
-                //db.smusuarios.Add(smusuarios);
-                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
