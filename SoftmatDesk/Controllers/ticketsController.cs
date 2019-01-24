@@ -30,26 +30,6 @@ namespace SoftmatDesk.Controllers
                 ViewBag.Id = Session["id"];
                 return View(tickets);
             }
-            else if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
-            {
-                //var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
-                string id = Session["id"].ToString();
-                int i = Int32.Parse(id);
-                List<tickets> tickets = db.tickets.Where(t => t.SmUsuarios_idsmUsuarios == i).ToList();
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View( tickets);
-            }
-            else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
-            {
-                //var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
-                string id = Session["id"].ToString();
-                int i = Int32.Parse(id);
-                List<tickets> tickets = db.tickets.Where(t => t.Usuario_idUsuario == i).ToList();
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View(tickets);
-            }
 
             return Content("No tiene acceso");
         }

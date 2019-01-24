@@ -14,7 +14,8 @@ namespace SoftmatDesk.Controllers
     {
         private softmatdeskEntities db = new softmatdeskEntities();
 
-        Session["id"]
+        string = id;
+        id = Session["id"].toString;
 
         public ActionResult Index()
         {

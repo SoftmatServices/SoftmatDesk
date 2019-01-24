@@ -311,7 +311,9 @@
     <Compile Include="Controllers\perfilsController.cs" />
     <Compile Include="Controllers\sedesController.cs" />
     <Compile Include="Controllers\smusuariosController.cs" />
+    <Compile Include="Controllers\TicketsClController.cs" />
     <Compile Include="Controllers\ticketsController.cs" />
+    <Compile Include="Controllers\TicketsSopController.cs" />
     <Compile Include="Controllers\TicketsUsController.cs" />
     <Compile Include="Controllers\tipo_fallasController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
@@ -319,7 +321,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PasswordStorage.cs" />
-    <Compile Include="Models\Controlacces.cs" />
     <Compile Include="Models\DB_Context\categorias.cs">
       <DependentUpon>SoftmatModel.tt</DependentUpon>
     </Compile>
@@ -4880,9 +4881,14 @@
     <Content Include="Views\nivel_soporte\Edit.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutUs.cshtml" />
+    <Content Include="Views\Shared\_LayoutCl.cshtml" />
+    <Content Include="Views\Shared\_LayoutSop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\TicketsCl\" />
+    <Folder Include="Views\TicketsSop\" />
     <Folder Include="Views\TicketsUs\" />
   </ItemGroup>
   <ItemGroup>
