@@ -15,22 +15,23 @@ namespace SoftmatDesk.Controllers
 
             if (Session["Sesion"] != null)
             {
-                if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
-                {
-                    return RedirectToAction("Index", "tickets", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
-                }
-                else if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
-                {
-                    return RedirectToAction("Create", "ticketsSop", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
-                }
-                else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
-                {
-                    return RedirectToAction("Index", "TicketsCl", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
-                }
-                else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
-                {
-                    return RedirectToAction("Index", "TicketsUs", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
-                }
+                //if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+                //{
+                //    return RedirectToAction("Index", "tickets", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                //}
+                //else if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
+                //{
+                //    return RedirectToAction("Create", "ticketsSop", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                //}
+                //else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
+                //{
+                //    return RedirectToAction("Index", "TicketsCl", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                //}
+                //else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
+                //{
+                //    return RedirectToAction("Index", "TicketsUs", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                //}
+                return RedirectToAction("Index", "tickets", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
             }
 
             return View();
@@ -55,11 +56,13 @@ namespace SoftmatDesk.Controllers
                     if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
                     {
                         Session["idC"] = ac.idC;
-                        return RedirectToAction("ListCl", "tickets");
+                        //return RedirectToAction("ListCl", "tickets");
+                        return RedirectToAction("Index", "tickets");
                     }
                     else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
                     {
-                        return RedirectToAction("ListUs", "tickets");
+                        //return RedirectToAction("ListUs", "tickets");
+                        return RedirectToAction("Index", "tickets");
                     }
 
                 }
@@ -80,12 +83,12 @@ namespace SoftmatDesk.Controllers
                     Session["id"] = ac.idUs;
                     Session["Rol"] = ac.Rol;
                     Session["IdRol"] = ac.IdRol;
-
-                    return RedirectToAction("ListSop", "tickets");
+                    return RedirectToAction("Index", "tickets");
+                    //return RedirectToAction("ListSop", "tickets");
                 }
             }
 
-            return View();
+            return View("No tiene acceso");
 
 
         }

@@ -311,10 +311,7 @@
     <Compile Include="Controllers\perfilsController.cs" />
     <Compile Include="Controllers\sedesController.cs" />
     <Compile Include="Controllers\smusuariosController.cs" />
-    <Compile Include="Controllers\TicketsClController.cs" />
     <Compile Include="Controllers\ticketsController.cs" />
-    <Compile Include="Controllers\TicketsSopController.cs" />
-    <Compile Include="Controllers\TicketsUsController.cs" />
     <Compile Include="Controllers\tipo_fallasController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4891,9 +4888,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TicketsCl\" />
-    <Folder Include="Views\TicketsSop\" />
-    <Folder Include="Views\TicketsUs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
