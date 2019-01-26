@@ -8,17 +8,17 @@
     }
     if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
     {
-        ViewBag.Title = "ListA";
+        ViewBag.Title = "ListSop";
         Layout = "~/Views/Shared/_LayoutSop.cshtml";
     }
     if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
     {
-        ViewBag.Title = "ListA";
+        ViewBag.Title = "ListCl";
         Layout = "~/Views/Shared/_LayoutCl.cshtml";
     }
     if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
     {
-        ViewBag.Title = "ListA";
+        ViewBag.Title = "ListUs";
         Layout = "~/Views/Shared/_LayoutUs.cshtml";
     }
 }

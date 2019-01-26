@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -18,28 +13,54 @@ namespace SoftmatDesk.Controllers
         // GET: clientes
         public async Task<ActionResult> Index()
         {
-            return View(await db.cliente.ToListAsync());
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                return View(await db.cliente.ToListAsync());
+            }
+            return View("Acceso no autorizado");
         }
 
         // GET: clientes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             cliente cliente = await db.cliente.FindAsync(id);
-            if (cliente == null)
+            if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
             {
-                return HttpNotFound();
+                if (cliente == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(cliente);
             }
-            return View(cliente);
+
+            return View("Acceso no autorizado");
+
         }
 
         // GET: clientes/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                return View();
+            }
+            return View("Acceso no autorizado");
         }
 
         // POST: clientes/Create
@@ -49,6 +70,7 @@ namespace SoftmatDesk.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "idCliente,Razon_social,Nit,Direccion,Contacto,Telefono,Celular,Correo,Num_Usuarios")] cliente cliente)
         {
+
             if (ModelState.IsValid)
             {
                 db.cliente.Add(cliente);
@@ -57,21 +79,30 @@ namespace SoftmatDesk.Controllers
             }
 
             return View(cliente);
+
         }
 
         // GET: clientes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cliente cliente = await db.cliente.FindAsync(id);
-            if (cliente == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
             {
-                return HttpNotFound();
+                cliente cliente = await db.cliente.FindAsync(id);
+                if (cliente == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(cliente);
             }
-            return View(cliente);
+            return View("Acceso no autorizado");
         }
 
         // POST: clientes/Edit/5
@@ -93,16 +124,24 @@ namespace SoftmatDesk.Controllers
         // GET: clientes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cliente cliente = await db.cliente.FindAsync(id);
-            if (cliente == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                cliente cliente = await db.cliente.FindAsync(id);
+                if (cliente == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(cliente);
             }
-            return View(cliente);
+            return View("Acceso no autorizado");
         }
 
         // POST: clientes/Delete/5

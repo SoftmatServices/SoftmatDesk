@@ -18,30 +18,67 @@ namespace SoftmatDesk.Controllers
         // GET: sedes
         public async Task<ActionResult> Index()
         {
-            var sedes = db.sedes.Include(s => s.cliente);
-            return View(await sedes.ToListAsync());
+            if (Session["Session"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                var sedes = db.sedes.Include(s => s.cliente);
+                return View(await sedes.ToListAsync());
+            }
+            else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
+            {
+                var sedes = db.sedes.Where(s => s.Cliente_idCliente == Int32.Parse(Session["idC"].ToString()));
+                return View(await sedes.ToListAsync());
+            }
+            return View("Acceso no autorizado");
+
         }
 
         // GET: sedes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            sedes sedes = await db.sedes.FindAsync(id);
-            if (sedes == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                sedes sedes = await db.sedes.FindAsync(id);
+                if (sedes == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(sedes);
             }
-            return View(sedes);
+            return View("Acceso no autorizado");
         }
 
         // GET: sedes/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
-            return View();
+            if (Session["Sesion"]==null)
+            {
+                return View("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
+                return View();
+            }
+            else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
+            {
+                var cliente = await db.cliente.Where(c => c.idCliente == Int32.Parse(Session["idC"].ToString())).ToListAsync();
+                //ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
+                ViewBag.Cliente_idCliente = new SelectList(cliente, "idCliente", "Razon_social");
+                return View();
+            }
+            return View("Acceso no autorizado");
         }
 
         // POST: sedes/Create

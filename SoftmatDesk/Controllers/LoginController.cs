@@ -31,7 +31,7 @@ namespace SoftmatDesk.Controllers
                 //{
                 //    return RedirectToAction("Index", "TicketsUs", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
                 //}
-                return RedirectToAction("Index", "tickets", new { NombreUs = Session["Sesion"].ToString(), id = Session["id"], rol = Session["Rol"] });
+                return RedirectToAction("Index", "tickets");
             }
 
             return View();
@@ -89,8 +89,6 @@ namespace SoftmatDesk.Controllers
             }
 
             return View("No tiene acceso");
-
-
         }
 
         public ActionResult Logout()
