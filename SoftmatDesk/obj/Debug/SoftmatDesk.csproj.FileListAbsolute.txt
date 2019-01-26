@@ -894,3 +894,4 @@ C:\Users\wwwno\OneDrive\Documentos\Softmat\Proyectos\Organizacion\SoftmatDesk\So
 C:\Users\wwwno\OneDrive\Documentos\Softmat\Proyectos\Organizacion\SoftmatDesk\SoftmatDesk\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\wwwno\OneDrive\Documentos\Softmat\Proyectos\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.csproj.CopyComplete
 C:\Users\Soporte IT\Desktop\Software\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.csprojAssemblyReference.cache
+C:\Users\wwwno\OneDrive\Documentos\Softmat\Proyectos\Organizacion\SoftmatDesk\SoftmatDesk\obj\Debug\SoftmatDesk.csprojAssemblyReference.cache

@@ -61,74 +61,6 @@ namespace SoftmatDesk.Controllers
             return Content("No tiene acceso");
         }
 
-        public ActionResult ListSop()
-        {
-
-            if (Session["Sesion"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else if (Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
-            {
-                var tickets = db.tickets.Include(t => t.categorias).Include(t => t.cliente).Include(t => t.nivel_prioridad).Include(t => t.sedes).Include(t => t.smusuarios).Include(t => t.usuario);
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View(tickets);
-            }
-
-            return Content("No tiene acceso");
-        }
-
-        public ActionResult ListCl()
-        {
-
-            if (Session["Sesion"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
-            {
-                int IdC = Int32.Parse(Session["idC"].ToString());
-                var tickets = db.tickets.Where(t => t.Cliente_idCliente == IdC);
-                ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
-                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
-                ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
-                ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
-                ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
-                ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View(tickets);
-            }
-
-            return Content("No tiene acceso");
-        }
-
-        public ActionResult ListUs()
-        {
-
-            if (Session["Sesion"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else if (Session["Rol"].ToString() == "Usuario" || Session["Rol"].ToString() == "User")
-            {
-                int id = Int32.Parse(Session["id"].ToString());
-                var tickets = db.tickets.Where(t => t.Usuario_idUsuario == id);
-                ViewBag.Categorias_idCategorias = new SelectList(db.categorias, "idCategorias", "Categoria");
-                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social");
-                ViewBag.Nivel_prioridad_idNivel_prioridad = new SelectList(db.nivel_prioridad, "idNivel_prioridad", "Prioridad");
-                ViewBag.Sedes_idSedes = new SelectList(db.sedes, "idSedes", "Nom_Sede");
-                ViewBag.SmUsuarios_idsmUsuarios = new SelectList(db.smusuarios, "idsmUsuarios", "Nombres");
-                ViewBag.Usuario_idUsuario = new SelectList(db.usuario, "idUsuario", "Nombres");
-                ViewBag.Nombre = Session["Sesion"];
-                ViewBag.Id = Session["id"];
-                return View(tickets);
-            }
-
-            return Content("No tiene acceso");
-        }
-
 
         // GET: tickets/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -308,22 +240,6 @@ namespace SoftmatDesk.Controllers
             tickets tickets = await db.tickets.FindAsync(id);
             db.tickets.Remove(tickets);
             await db.SaveChangesAsync();
-            if (Session["Rol"].ToString() == "Administrador" || Session["Session"].ToString() == "Admin")
-            {
-                return View("tikets");
-            }
-            else if (Session["Rol"].ToString() == "Soporte" || Session["Session"].ToString() == "Sop")
-            {
-                return View("ListSop");
-            }
-            else if (Session["Rol"].ToString() == "Cliente" || Session["Session"].ToString() == "Client")
-            {
-                return View("ListCl");
-            }
-            else if (Session["Rol"].ToString() == "Usuario" || Session["Session"].ToString() == "User")
-            {
-                return View("ListUs");
-            }
             return RedirectToAction("Index");
         }
 

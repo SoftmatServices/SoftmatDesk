@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SoftmatDesk.Models.DB_Context;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -29,7 +27,8 @@ namespace SoftmatDesk.Controllers
             }
             else if (Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
             {
-                var sedes = db.sedes.Where(s => s.Cliente_idCliente == Int32.Parse(Session["idC"].ToString()));
+                int idC = Int32.Parse(Session["idC"].ToString());
+                var sedes = db.sedes.Where(s => s.Cliente_idCliente == idC);
                 return View(await sedes.ToListAsync());
             }
             return View("Acceso no autorizado");
@@ -62,7 +61,7 @@ namespace SoftmatDesk.Controllers
         // GET: sedes/Create
         public async Task<ActionResult> Create()
         {
-            if (Session["Sesion"]==null)
+            if (Session["Sesion"] == null)
             {
                 return View("Index", "Login");
             }
@@ -102,17 +101,25 @@ namespace SoftmatDesk.Controllers
         // GET: sedes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Index", "Login");
             }
-            sedes sedes = await db.sedes.FindAsync(id);
-            if (sedes == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                sedes sedes = await db.sedes.FindAsync(id);
+                if (sedes == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social", sedes.Cliente_idCliente);
+                return View(sedes);
             }
-            ViewBag.Cliente_idCliente = new SelectList(db.cliente, "idCliente", "Razon_social", sedes.Cliente_idCliente);
-            return View(sedes);
+            return View("Acceso no autorizado");
         }
 
         // POST: sedes/Edit/5
@@ -135,16 +142,24 @@ namespace SoftmatDesk.Controllers
         // GET: sedes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Index", "Login");
             }
-            sedes sedes = await db.sedes.FindAsync(id);
-            if (sedes == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                sedes sedes = await db.sedes.FindAsync(id);
+                if (sedes == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(sedes);
             }
-            return View(sedes);
+            return View("Acceso no autorizado");
         }
 
         // POST: sedes/Delete/5

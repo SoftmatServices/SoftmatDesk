@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -18,28 +13,52 @@ namespace SoftmatDesk.Controllers
         // GET: nivel_soporte
         public async Task<ActionResult> Index()
         {
-            return View(await db.nivel_soporte.ToListAsync());
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
+            {
+                return View(await db.nivel_soporte.ToListAsync());
+            }
+            return View("Acceso no autorizado");
         }
 
         // GET: nivel_soporte/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
-            if (nivel_soporte == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
+                if (nivel_soporte == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_soporte);
             }
-            return View(nivel_soporte);
+            return View("Acceso no autorizado");
         }
 
         // GET: nivel_soporte/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                return View();
+            }
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_soporte/Create
@@ -62,16 +81,24 @@ namespace SoftmatDesk.Controllers
         // GET: nivel_soporte/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
-            if (nivel_soporte == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
+                if (nivel_soporte == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_soporte);
             }
-            return View(nivel_soporte);
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_soporte/Edit/5
@@ -89,20 +116,28 @@ namespace SoftmatDesk.Controllers
             }
             return View(nivel_soporte);
         }
-        
+
         // GET: nivel_soporte/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
-            if (nivel_soporte == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_soporte nivel_soporte = await db.nivel_soporte.FindAsync(id);
+                if (nivel_soporte == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_soporte);
             }
-            return View(nivel_soporte);
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_soporte/Delete/5

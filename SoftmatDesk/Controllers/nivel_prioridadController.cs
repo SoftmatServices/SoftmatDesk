@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -18,28 +13,54 @@ namespace SoftmatDesk.Controllers
         // GET: nivel_prioridad
         public async Task<ActionResult> Index()
         {
-            return View(await db.nivel_prioridad.ToListAsync());
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Admin"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
+            {
+                return View(await db.nivel_prioridad.ToListAsync());
+            }
+            return View("Acceso no autorizado");
+
         }
 
         // GET: nivel_prioridad/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
-            if (nivel_prioridad == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" || Session["Rol"].ToString() == "Sop")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
+                if (nivel_prioridad == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_prioridad);
             }
-            return View(nivel_prioridad);
+            return View("Accesso no autorizado");
+
         }
 
         // GET: nivel_prioridad/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                return View();
+            }
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_prioridad/Create
@@ -57,21 +78,31 @@ namespace SoftmatDesk.Controllers
             }
 
             return View(nivel_prioridad);
+
+
         }
 
         // GET: nivel_prioridad/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
-            if (nivel_prioridad == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
+                if (nivel_prioridad == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_prioridad);
             }
-            return View(nivel_prioridad);
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_prioridad/Edit/5
@@ -93,16 +124,24 @@ namespace SoftmatDesk.Controllers
         // GET: nivel_prioridad/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
-            if (nivel_prioridad == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                nivel_prioridad nivel_prioridad = await db.nivel_prioridad.FindAsync(id);
+                if (nivel_prioridad == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nivel_prioridad);
             }
-            return View(nivel_prioridad);
+            return View("Acceso no autorizado");
         }
 
         // POST: nivel_prioridad/Delete/5

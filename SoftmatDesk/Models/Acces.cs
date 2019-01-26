@@ -13,6 +13,7 @@ namespace SoftmatDesk.Models
         public string Rol { get; set; }
         public int idC { get; set; }
         public int N_Us { get; set; }
+        public int idS { get; set; }
         public int IdLvl { get; set; }
         public int IdRol { get; set; }
 
@@ -65,7 +66,7 @@ namespace SoftmatDesk.Models
                     result = PasswordStorage.VerifyPassword(contraseña, modelS.Contraseña);
                 }
 
-                else if (modelLvl != null && modelLvl.Nivel_Sop == "Admin" || modelLvl.Nivel_Sop == "Administrador")
+                else if (modelLvl != null && modelLvl.Nivel_Sop == "Administrador" || modelLvl.Nivel_Sop == "Admin")
                 {
                     Sesion = modelS.Nombres + " " + modelS.Apellidos;
                     idUs = modelS.idsmUsuarios;
@@ -76,10 +77,11 @@ namespace SoftmatDesk.Models
                     }
 
                 }
-                else if (modelLvl != null && modelLvl.Nivel_Sop == "Sop" || modelLvl.Nivel_Sop == "Soporte")
+                else if (modelLvl != null && modelLvl.Nivel_Sop == "Soporte" || modelLvl.Nivel_Sop == "Sop")
                 {
                     Sesion = modelS.Nombres + " " + modelS.Apellidos;
                     idUs = modelS.idsmUsuarios;
+                    
                     Rol = modelLvl.Nivel_Sop;
                     if (result)
                     {

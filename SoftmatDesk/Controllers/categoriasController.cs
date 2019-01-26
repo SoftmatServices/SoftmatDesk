@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -18,6 +13,11 @@ namespace SoftmatDesk.Controllers
         // GET: categorias
         public async Task<ActionResult> Index()
         {
+            if (Session["Sesion"].ToString() == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var categorias = db.categorias.Include(c => c.nivel_soporte);
             return View(await categorias.ToListAsync());
         }
@@ -25,10 +25,15 @@ namespace SoftmatDesk.Controllers
         // GET: categorias/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             categorias categorias = await db.categorias.FindAsync(id);
             if (categorias == null)
             {
@@ -40,8 +45,16 @@ namespace SoftmatDesk.Controllers
         // GET: categorias/Create
         public ActionResult Create()
         {
-            ViewBag.Nivel_Soporte_idNivel_Soporte = new SelectList(db.nivel_soporte, "Nivel_Soporte_idNivel_Soporte", "Nivel_Sop");
-            return View();
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Sesion"].ToString() == "Administrador" || Session["Sesion"].ToString()=="Admin")
+            {
+                ViewBag.Nivel_Soporte_idNivel_Soporte = new SelectList(db.nivel_soporte, "Nivel_Soporte_idNivel_Soporte", "Nivel_Sop");
+                return View();
+            }
+            return View("Acceso o autorizado");
         }
 
         // POST: categorias/Create
@@ -65,17 +78,24 @@ namespace SoftmatDesk.Controllers
         // GET: categorias/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            categorias categorias = await db.categorias.FindAsync(id);
-            if (categorias == null)
-            {
-                return HttpNotFound();
+            else if (Session["Sesion"].ToString() == "Administrador" || Session["Sesion"].ToString() == "Admin") {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                categorias categorias = await db.categorias.FindAsync(id);
+                if (categorias == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Nivel_Soporte_idNivel_Soporte = new SelectList(db.nivel_soporte, "Nivel_Soporte_idNivel_Soporte", "Nivel_Sop", categorias.Nivel_Soporte_idNivel_Soporte);
+                return View(categorias);
             }
-            ViewBag.Nivel_Soporte_idNivel_Soporte = new SelectList(db.nivel_soporte, "Nivel_Soporte_idNivel_Soporte", "Nivel_Sop", categorias.Nivel_Soporte_idNivel_Soporte);
-            return View(categorias);
+            return View("Acceso no autorizado");
         }
 
         // POST: categorias/Edit/5
@@ -98,16 +118,25 @@ namespace SoftmatDesk.Controllers
         // GET: categorias/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            categorias categorias = await db.categorias.FindAsync(id);
-            if (categorias == null)
+            else if (Session["Sesion"].ToString() == "Administrador" || Session["Sesion"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                categorias categorias = await db.categorias.FindAsync(id);
+                if (categorias == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(categorias);
             }
-            return View(categorias);
+
+            return View("Acceso no autorizado");
         }
 
         // POST: categorias/Delete/5

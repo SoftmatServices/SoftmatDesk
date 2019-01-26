@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SoftmatDesk.Models.DB_Context;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SoftmatDesk.Models.DB_Context;
 
 namespace SoftmatDesk.Controllers
 {
@@ -18,28 +13,54 @@ namespace SoftmatDesk.Controllers
         // GET: perfils
         public async Task<ActionResult> Index()
         {
-            return View(await db.perfil.ToListAsync());
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" ||
+                        Session["Rol"].ToString() == "Sop" || Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
+            {
+                return View(await db.perfil.ToListAsync());
+            }
+            return View("Acceso no autorizado");
         }
 
         // GET: perfils/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            perfil perfil = await db.perfil.FindAsync(id);
-            if (perfil == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin" || Session["Rol"].ToString() == "Soporte" ||
+                        Session["Rol"].ToString() == "Sop" || Session["Rol"].ToString() == "Cliente" || Session["Rol"].ToString() == "Client")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                perfil perfil = await db.perfil.FindAsync(id);
+                if (perfil == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(perfil);
             }
-            return View(perfil);
+            return View("Acceso no autorizado");
         }
 
         // GET: perfils/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Sesion"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
+            {
+                return View();
+            }
+            return View("Acceso no autorizado");
         }
 
         // POST: perfils/Create
@@ -62,16 +83,24 @@ namespace SoftmatDesk.Controllers
         // GET: perfils/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            perfil perfil = await db.perfil.FindAsync(id);
-            if (perfil == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                perfil perfil = await db.perfil.FindAsync(id);
+                if (perfil == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(perfil);
             }
-            return View(perfil);
+            return View("Acceso no autorizado");
         }
 
         // POST: perfils/Edit/5
@@ -93,16 +122,24 @@ namespace SoftmatDesk.Controllers
         // GET: perfils/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["Sesion"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Login");
             }
-            perfil perfil = await db.perfil.FindAsync(id);
-            if (perfil == null)
+            else if (Session["Rol"].ToString() == "Administrador" || Session["Rol"].ToString() == "Admin")
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                perfil perfil = await db.perfil.FindAsync(id);
+                if (perfil == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(perfil);
             }
-            return View(perfil);
+            return View("Acceso no autorizado");
         }
 
         // POST: perfils/Delete/5
