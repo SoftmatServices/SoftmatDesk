@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="softmatdeskModel.nivel_soporte" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="softmatdeskModel.perfil" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="softmatdeskModel.sedes" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="softmatdeskModel.smusuarios" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="softmatdeskModel.smusuarios" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="softmatdeskModel.tickets" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="softmatdeskModel.tipo_fallas" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="softmatdeskModel.usuario" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />

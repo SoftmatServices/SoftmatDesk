@@ -78,9 +78,10 @@
           <Property Name="Direccion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Nivel_Soporte_Nivel_Soporte_idNivel_Soporte" Type="int" Nullable="false" />
+          <Property Name="Sedes_idSedes" Type="int" />
           <Property Name="ImgPerfil" Type="longblob" />
           <Property Name="NickName" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="tickets">
           <Key>
@@ -231,6 +232,7 @@
           <Property Name="Contraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="nivel_soporte" Relationship="Self.fk_SmUsuarios_Nivel_Soporte1" FromRole="smusuarios" ToRole="nivel_soporte" />
           <NavigationProperty Name="tickets" Relationship="Self.fk_Tickets_SmUsuarios1" FromRole="smusuarios" ToRole="tickets" />
+          <Property Name="Sedes_idSedes" Type="Int32" />
         </EntityType>
         <EntityType Name="tickets">
           <Key>
@@ -580,6 +582,7 @@
           <EntitySetMapping Name="smusuarios">
             <EntityTypeMapping TypeName="softmatdeskModel.smusuarios">
               <MappingFragment StoreEntitySet="smusuarios">
+                <ScalarProperty Name="Sedes_idSedes" ColumnName="Sedes_idSedes" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="idsmUsuarios" ColumnName="idsmUsuarios" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
